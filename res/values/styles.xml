@@ -29,7 +29,7 @@
 		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">@dimen/title_height</item>
 		<item name="android:orientation">horizontal</item>
-		<item name="android:background">@drawable/ushahidi_android_titlebar</item>
+		<item name="android:background">@drawable/actionbar_title_container_background</item>
 	</style>
 
 	<style name="ActionBarTitle">
@@ -125,5 +125,10 @@
 		<item name="android:textColor">@color/title_text</item>
 		<item name="android:background">@drawable/actionbar_button</item>
 	</style>
-
+    <style name="DashboardBackground">
+        <item name="android:orientation">vertical</item>
+    <item name="android:layout_width">fill_parent</item> 
+    <item name="android:layout_height">fill_parent</item>
+    <item name="android:background">@drawable/ushahidi_android_dashboard_background</item>
+    </style>
 </resources>

@@ -187,4 +187,5 @@ public class ListCheckinText {
     public Drawable getArrow() {
         return this.arrow;
     }
+    
 }

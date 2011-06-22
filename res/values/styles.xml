@@ -125,10 +125,4 @@
 		<item name="android:textColor">@color/title_text</item>
 		<item name="android:background">@drawable/actionbar_button</item>
 	</style>
-    <style name="DashboardBackground">
-        <item name="android:orientation">vertical</item>
-    <item name="android:layout_width">fill_parent</item> 
-    <item name="android:layout_height">fill_parent</item>
-    <item name="android:background">@drawable/ushahidi_android_dashboard_background</item>
-    </style>
 </resources>

@@ -104,11 +104,16 @@
 	<!-- about screen -->
 	<string name="menu_about">About</string>
 	<string name="ushahidi_url">ushahidi.com</string>
-	<string name="welcome_mgs">Ushahidi is a non-profit tech company that develops
-		free and open source software for information collection,
-		visualization and interactive mapping. We built the Ushahidi platform
-		as a tool to easily crowdsource information using multiple channels,
-		including SMS, email, Twitter and the web.
+	<string name="welcome_mgs">This version of ushahidi was created during the water hackathon 2011 by:\n
+	- Daniel Fligg\n
+	- Simon Funke\n	
+	- Caroline Glassberg-Powell\n
+	- Dirk Gorissen\n
+	- Mark Iliffe\n	
+	- Kynan Maclachlan\n
+	- Florian Rathgeber\n	
+	- Farhan Rehman\n
+	- Nico Weinert
 	</string>
 	<string name="internet_connection">Network error, please ensure you are connected to
 		the Internet</string>

@@ -254,7 +254,8 @@ public class UshahidiHttpClient {
                 entity.addPart("person_first", new StringBody(params.get("person_first")));
                 entity.addPart("person_last", new StringBody(params.get("person_last")));
                 entity.addPart("person_email", new StringBody(params.get("person_email")));
-
+                entity.addPart("user_id", new StringBody(params.get("identifier")));
+                
                 Log.i("HTTP Client:", "filename:" + UshahidiPref.savePath + params.get("filename"));
 
                 if (!TextUtils.isEmpty(params.get("filename")))

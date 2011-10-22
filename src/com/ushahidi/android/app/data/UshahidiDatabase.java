@@ -27,11 +27,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import com.ushahidi.android.app.UshahidiPref;
-import com.ushahidi.android.app.checkin.Checkin;
-import com.ushahidi.android.app.checkin.CheckinMedia;
-import com.ushahidi.android.app.util.Util;
-
 import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
@@ -42,6 +37,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.provider.BaseColumns;
 import android.util.Log;
+
+import com.ushahidi.android.app.Identifier;
+import com.ushahidi.android.app.UshahidiPref;
+import com.ushahidi.android.app.checkin.Checkin;
+import com.ushahidi.android.app.checkin.CheckinMedia;
+import com.ushahidi.android.app.util.Util;
 
 public class UshahidiDatabase {
 
@@ -614,9 +615,13 @@ public class UshahidiDatabase {
         addIncidents(newIncidents, true);
         return fetchUnreadCount();
     }
-
+    
+    /*
+     * Only fetch reports for the user
+     */
     public Cursor fetchAllIncidents() {
-        return mDb.query(INCIDENTS_TABLE, INCIDENTS_COLUMNS, null, null, null, null, INCIDENT_DATE
+    	String selectOnlyUserReports = "USER_ID = '" + new Identifier().identifier() + "'"; 
+        return mDb.query(INCIDENTS_TABLE, INCIDENTS_COLUMNS, selectOnlyUserReports, null, null, null, INCIDENT_DATE
                 + " DESC");
     }
 

@@ -902,6 +902,25 @@ public class AddIncident extends UserLocationMap {
 
     }
 
+    
+    //Get the unique identifier of the phone
+    
+    public String identifer(){
+
+    	TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
+
+    	String tmDevice, tmSerial, tmPhone, androidId;
+        tmDevice = "" + tm.getDeviceId();
+        tmSerial = "" + tm.getSimSerialNumber();
+        tmPhone = "" + tm.getSimOperator();
+        androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+        UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
+        String uniqueID = deviceUuid.toString();
+    	
+    	return uniqueID;
+    }
+    
     /**
      * Post directly to online.
      * 
@@ -936,6 +955,7 @@ public class AddIncident extends UserLocationMap {
         mParams.put("person_last", UshahidiPref.lastname);
         mParams.put("person_email", UshahidiPref.email);
         mParams.put("filename", UshahidiPref.fileName);
+        mParams.put("identifier", identifer());
 
         try {
             return UshahidiHttpClient.PostFileUpload(urlBuilder.toString(), mParams);
@@ -1065,24 +1085,7 @@ public class AddIncident extends UserLocationMap {
     public void setVectorCategories(Vector<String> aVectorCategories) {
         mVectorCategories = aVectorCategories;
     }
-    
-    //Get the unique identifier of the phone
-    
-    public String identifer(){
 
-    	TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
-
-    	String tmDevice, tmSerial, tmPhone, androidId;
-        tmDevice = "" + tm.getDeviceId();
-        tmSerial = "" + tm.getSimSerialNumber();
-        tmPhone = "" + tm.getSimOperator();
-        androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-
-        UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
-        String uniqueID = deviceUuid.toString();
-    	
-    	return uniqueID;
-    }
 
     // thread class
     private class AddReportsTask extends AsyncTask<Void, Void, Integer> {

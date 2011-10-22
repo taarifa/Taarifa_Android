@@ -1,21 +1,21 @@
-/** 
+/**
  ** Copyright (c) 2010 Ushahidi Inc
  ** All rights reserved
  ** Contact: team@ushahidi.com
  ** Website: http://www.ushahidi.com
- ** 
+ **
  ** GNU Lesser General Public License Usage
  ** This file may be used under the terms of the GNU Lesser
  ** General Public License version 3 as published by the Free Software
  ** Foundation and appearing in the file LICENSE.LGPL included in the
  ** packaging of this file. Please review the following information to
  ** ensure the GNU Lesser General Public License version 3 requirements
- ** will be met: http://www.gnu.org/licenses/lgpl.html.	
- **	
+ ** will be met: http://www.gnu.org/licenses/lgpl.html.
+ **
  **
  ** If you have questions regarding the use of this file, please contact
  ** Ushahidi developers at team@ushahidi.com.
- ** 
+ **
  **/
 
 package com.ushahidi.android.app.data;
@@ -32,6 +32,8 @@ public class IncidentsData {
     private int incidentMode = 0;
 
     private int incidentVerified = 0;
+
+    private int incidentStatus = 0;
 
     private String incidentLocLatitude = "";
 
@@ -127,6 +129,42 @@ public class IncidentsData {
 
     public void setIncidentVerified(int id) {
         this.incidentVerified = id;
+    }
+
+    public int getIncidentStatus() {
+        return incidentStatus;
+    }
+
+    public String getIncidentStatusString() {
+        String statusString = "unknown";
+        // FIXME: this should be pulled from the database
+        switch (this.incidentStatus) {
+        case 0:
+            statusString = "unverified";
+            break;
+        case 1:
+            statusString = "approved";
+            break;
+        case 2:
+            statusString = "triaged";
+            break;
+        case 3:
+            statusString = "awaiting repair";
+            break;
+        case 4:
+            statusString = "disputed";
+            break;
+        case 5:
+            statusString = "finished";
+            break;
+        default:
+            break;
+        }
+        return statusString;
+    }
+
+    public void setIncidentStatus(int status) {
+        this.incidentStatus = status;
     }
 
     public int getIncidentMode() {

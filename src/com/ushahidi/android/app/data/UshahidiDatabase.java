@@ -1,21 +1,21 @@
-/** 
+/**
  ** Copyright (c) 2010 Ushahidi Inc
  ** All rights reserved
  ** Contact: team@ushahidi.com
  ** Website: http://www.ushahidi.com
- ** 
+ **
  ** GNU Lesser General Public License Usage
  ** This file may be used under the terms of the GNU Lesser
  ** General Public License version 3 as published by the Free Software
  ** Foundation and appearing in the file LICENSE.LGPL included in the
  ** packaging of this file. Please review the following information to
  ** ensure the GNU Lesser General Public License version 3 requirements
- ** will be met: http://www.gnu.org/licenses/lgpl.html.	
- **	
+ ** will be met: http://www.gnu.org/licenses/lgpl.html.
+ **
  **
  ** If you have questions regarding the use of this file, please contact
  ** Ushahidi developers at team@ushahidi.com.
- ** 
+ **
  **/
 
 package com.ushahidi.android.app.data;
@@ -99,6 +99,8 @@ public class UshahidiDatabase {
     public static final String INCIDENT_MODE = "incident_mode";
 
     public static final String INCIDENT_VERIFIED = "incident_verified";
+
+    public static final String INCIDENT_STATUS = "incident_status";
 
     public static final String INCIDENT_LOC_NAME = "incident_loc_name";
 
@@ -210,11 +212,11 @@ public class UshahidiDatabase {
                                                                         // active,
                                                                         // 0 4
                                                                         // inactive
-    
+
 
     public static final String[] INCIDENTS_COLUMNS = new String[] {
             INCIDENT_ID, INCIDENT_TITLE, INCIDENT_DESC, INCIDENT_DATE, INCIDENT_MODE,
-            INCIDENT_VERIFIED, INCIDENT_LOC_NAME, INCIDENT_LOC_LATITUDE, INCIDENT_LOC_LONGITUDE,
+            INCIDENT_VERIFIED, INCIDENT_STATUS, INCIDENT_LOC_NAME, INCIDENT_LOC_LATITUDE, INCIDENT_LOC_LONGITUDE,
             INCIDENT_CATEGORIES, INCIDENT_MEDIA, INCIDENT_IMAGE, INCIDENT_IS_UNREAD
     };
 
@@ -285,7 +287,8 @@ public class UshahidiDatabase {
             + INCIDENTS_TABLE + " (" + INCIDENT_ID + " INTEGER PRIMARY KEY ON CONFLICT REPLACE, "
             + INCIDENT_TITLE + " TEXT NOT NULL, " + INCIDENT_DESC + " TEXT, " + INCIDENT_DATE
             + " DATE NOT NULL, " + INCIDENT_MODE + " INTEGER, " + INCIDENT_VERIFIED + " INTEGER, "
-            + INCIDENT_LOC_NAME + " TEXT NOT NULL, " + INCIDENT_LOC_LATITUDE + " TEXT NOT NULL, "
+            + INCIDENT_STATUS + " INTEGER, " + INCIDENT_LOC_NAME + " TEXT NOT NULL, "
+            + INCIDENT_LOC_LATITUDE + " TEXT NOT NULL, "
             + INCIDENT_LOC_LONGITUDE + " TEXT NOT NULL, " + INCIDENT_CATEGORIES
             + " TEXT NOT NULL, " + INCIDENT_MEDIA + " TEXT, " + INCIDENT_IMAGE + " TEXT, "
             + INCIDENT_IS_UNREAD + " BOOLEAN NOT NULL " + ")";
@@ -438,7 +441,7 @@ public class UshahidiDatabase {
 
     /**
      * Credits http://goo.gl/7kOpU
-     * 
+     *
      * @param db
      * @param tableName
      * @return
@@ -499,6 +502,7 @@ public class UshahidiDatabase {
         initialValues.put(INCIDENT_DATE, incidents.getIncidentDate());
         initialValues.put(INCIDENT_MODE, incidents.getIncidentMode());
         initialValues.put(INCIDENT_VERIFIED, incidents.getIncidentVerified());
+        initialValues.put(INCIDENT_STATUS, incidents.getIncidentStatus());
         initialValues.put(INCIDENT_LOC_NAME, incidents.getIncidentLocation());
         initialValues.put(INCIDENT_LOC_LATITUDE, incidents.getIncidentLocLatitude());
         initialValues.put(INCIDENT_LOC_LONGITUDE, incidents.getIncidentLocLongitude());
@@ -546,7 +550,7 @@ public class UshahidiDatabase {
 
     /**
      * Create table for checkins
-     * 
+     *
      * @param incidents
      * @param isUnread
      * @return
@@ -674,7 +678,7 @@ public class UshahidiDatabase {
 
     /**
      * Returns a Cursor positioned at the word specified by rowId
-     * 
+     *
      * @param rowId id of deployment to retrieve
      * @param columns The columns to include, if null then all are included
      * @return Cursor positioned to matching deployment, or null if not found.
@@ -695,7 +699,7 @@ public class UshahidiDatabase {
 
     /**
      * Performs a database query.
-     * 
+     *
      * @param selection The selection clause
      * @param selectionArgs Selection arguments for "?" components in the
      *            selection
@@ -740,7 +744,7 @@ public class UshahidiDatabase {
     }
 
     public Cursor fetchDeploymentById(String id) {
-       
+
         String selection = "rowid = ?";
         String[] selectionArgs = new String[] {
                 id
@@ -858,7 +862,7 @@ public class UshahidiDatabase {
         Log.i(TAG, "Deleting all Deployment");
         return mDb.delete(DEPLOYMENT_TABLE, null, null) > 0;
     }
-    
+
     /**
      * Delete all deployments that were fetched from the internet
      */
@@ -886,7 +890,7 @@ public class UshahidiDatabase {
 
     /**
      * Allows for the deletion of individual off line incidents given an id
-     * 
+     *
      * @param addIncidentId
      * @return
      */
@@ -896,7 +900,7 @@ public class UshahidiDatabase {
 
     /**
      * Clear the offline table for adding incidents
-     * 
+     *
      * @return boolean
      */
     public boolean deleteAddIncidents() {
@@ -1006,7 +1010,7 @@ public class UshahidiDatabase {
 
     /**
      * Adds new incidents to be posted online to the db.
-     * 
+     *
      * @param List addIncidents
      */
     public long addIncidents(List<AddIncidentData> addIncidents) {
@@ -1085,7 +1089,7 @@ public class UshahidiDatabase {
 
     /**
      * Add new deployments to table
-     * 
+     *
      * @param deployments
      */
     public void addDeployment(List<DeploymentsData> deployments) {
@@ -1104,7 +1108,7 @@ public class UshahidiDatabase {
 
     /**
      * Add new deployments to table
-     * 
+     *
      * @param deployments
      */
     public void addDeployment(String name, String url) {
@@ -1129,7 +1133,7 @@ public class UshahidiDatabase {
 
     /**
      * Limit number of records to retrieve.
-     * 
+     *
      * @param tablename
      * @param limit
      * @param KEY_ID
@@ -1147,7 +1151,7 @@ public class UshahidiDatabase {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 int limitId = cursor.getInt(0);
-	            deleted = mDb.delete(tablename, KEY_ID + "<" + limitId, null);
+                deleted = mDb.delete(tablename, KEY_ID + "<" + limitId, null);
             }
             cursor.close();
         }

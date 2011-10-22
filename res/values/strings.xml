@@ -34,8 +34,12 @@
 	<string name="btn_cancel">Cancel</string>
 	<string name="btn_send">Send</string>
 	<string name="incident_date">Change the date</string>
-	<string name="incident_verified">Verified</string>
 	<string name="incident_unverified">Unverified</string>
+	<string name="incident_verified">Verified</string>
+	<string name="incident_triaged">Triaged</string>
+	<string name="incident_awaiting_repair">Awaiting Repair</string>
+	<string name="incident_disputed">Disputed</string>
+	<string name="incident_finished">Finished</string>
 	<string name="incident_location">Location:</string>
 	<string name="add_location">Add a location</string>
 	<string name="view_map">Map</string>
@@ -147,8 +151,12 @@
 		you have pin point the exact location on the map.</string>
 	<string name="version">v1.1</string>
 	<string name="report_title">Title</string>
-	<string name="report_verified">Verified</string>
 	<string name="report_unverified">Unverified</string>
+	<string name="report_verified">Verified</string>
+	<string name="report_triaged">Triaged</string>
+	<string name="report_awaiting_repair">Awaiting Repair</string>
+	<string name="report_disputed">Disputed</string>
+	<string name="report_finished">Finished</string>
 	<string name="report_desc">Description</string>
 	<string name="report_category">Category</string>
 	<string name="report_date">Date</string>

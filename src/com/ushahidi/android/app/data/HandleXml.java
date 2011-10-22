@@ -157,6 +157,14 @@ public class HandleXml {
             incidentData.setIncidentVerified(Integer.parseInt((verified.item(0)).getNodeValue()));
         }
 
+        NodeList statusElementList = element.getElementsByTagName("status");
+        if (statusElementList.getLength() != 0) {
+            Element statusElement = (Element)statusElementList.item(0);
+
+            NodeList status = statusElement.getChildNodes();
+            incidentData.setIncidentStatus(Integer.parseInt((status.item(0)).getNodeValue()));
+        }
+
         // location
         NodeList locationElementList = element.getElementsByTagName("location");
         if (locationElementList.getLength() != 0) {

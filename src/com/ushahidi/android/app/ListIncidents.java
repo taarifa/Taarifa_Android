@@ -1,21 +1,21 @@
-/** 
+/**
  ** Copyright (c) 2010 Ushahidi Inc
  ** All rights reserved
  ** Contact: team@ushahidi.com
  ** Website: http://www.ushahidi.com
- ** 
+ **
  ** GNU Lesser General Public License Usage
  ** This file may be used under the terms of the GNU Lesser
  ** General Public License version 3 as published by the Free Software
  ** Foundation and appearing in the file LICENSE.LGPL included in the
  ** packaging of this file. Please review the following information to
  ** ensure the GNU Lesser General Public License version 3 requirements
- ** will be met: http://www.gnu.org/licenses/lgpl.html.	
- **	
+ ** will be met: http://www.gnu.org/licenses/lgpl.html.
+ **
  **
  ** If you have questions regarding the use of this file, please contact
  ** Ushahidi developers at team@ushahidi.com.
- ** 
+ **
  **/
 
 package com.ushahidi.android.app;
@@ -102,17 +102,17 @@ public class ListIncidents extends Activity {
 
         listIncidents = (PullToRefreshListView)findViewById(R.id.view_incidents);
         emptyListText = (TextView) findViewById(R.id.empty_list_for_reports);
-        
+
         mOldIncidents = new ArrayList<IncidentsData>();
         ila = new ListIncidentAdapter(this);
         listIncidents.setOnItemClickListener(new OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> arg0, View view, int positions, long id) {
-                
+
                 //It seems pull to refresh list is buggy; The list item position is by 1 higher
                 //TODO Look into fixing this.
                 int position = positions - 1;
-                
+
                 incidentsBundle.putInt("id", mOldIncidents.get(position).getIncidentId());
                 incidentsBundle.putString("title", mOldIncidents.get(position).getIncidentTitle());
                 incidentsBundle.putString("desc", mOldIncidents.get(position).getIncidentDesc());
@@ -139,13 +139,13 @@ public class ListIncidents extends Activity {
             }
 
         });
-        
+
         listIncidents.setOnRefreshListener(new OnRefreshListener() {
             public void onRefresh() {
                 refreshForReports();
             }
         });
-        
+
         spinner = (Spinner)findViewById(R.id.incident_cat);
 
         mHandler.post(mDisplayIncidents);
@@ -170,7 +170,7 @@ public class ListIncidents extends Activity {
             UshahidiApplication.mDb.markAllCategoriesRead();
         }
     }
-    
+
     public  void displayEmptyListText() {
 
         if (ila.getCount() == 0) {
@@ -204,7 +204,7 @@ public class ListIncidents extends Activity {
             showCategories();
         }
     };
-    
+
     public void refreshForReports() {
         ReportsTask reportsTask = new ReportsTask();
         reportsTask.appContext = this;
@@ -355,7 +355,7 @@ public class ListIncidents extends Activity {
         String categories;
         String media;
         String image;
-        
+
         String thumbnails[];
         Drawable d = null;
 
@@ -364,6 +364,7 @@ public class ListIncidents extends Activity {
             int titleIndex = cursor.getColumnIndexOrThrow(UshahidiDatabase.INCIDENT_TITLE);
             int dateIndex = cursor.getColumnIndexOrThrow(UshahidiDatabase.INCIDENT_DATE);
             int verifiedIndex = cursor.getColumnIndexOrThrow(UshahidiDatabase.INCIDENT_VERIFIED);
+            int statusIndex = cursor.getColumnIndexOrThrow(UshahidiDatabase.INCIDENT_STATUS);
             int locationIndex = cursor.getColumnIndexOrThrow(UshahidiDatabase.INCIDENT_LOC_NAME);
 
             int descIndex = cursor.getColumnIndexOrThrow(UshahidiDatabase.INCIDENT_DESC);
@@ -436,8 +437,29 @@ public class ListIncidents extends Activity {
                 image = cursor.getString(imageIndex);
                 incidentData.setIncidentImage(image);
 
-                status = Util.toInt(cursor.getString(verifiedIndex)) == 0 ? getString(R.string.report_unverified)
-                        : getString(R.string.report_verified);
+                switch (Util.toInt(cursor.getString(statusIndex))) {
+                case 0:
+                	status = getString(R.string.report_unverified);
+                	break;
+                case 1:
+                	status = getString(R.string.report_verified);
+                	break;
+                case 2:
+                	status = getString(R.string.report_triaged);
+                	break;
+                case 3:
+                	status = getString(R.string.report_awaiting_repair);
+                	break;
+                case 4:
+                	status = getString(R.string.report_disputed);
+                	break;
+                case 5:
+                	status = getString(R.string.report_finished);
+                	break;
+                default:
+                	status = "Unknown";
+                	break;
+                }
                 incidentData.setIncidentVerified(Util.toInt(cursor.getString(verifiedIndex)));
                 listText.setStatus(status);
 
@@ -480,7 +502,7 @@ public class ListIncidents extends Activity {
     // spinner listener
     Spinner.OnItemSelectedListener spinnerListener = new Spinner.OnItemSelectedListener() {
 
-        
+
         public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 
             // clear data in the list
@@ -490,7 +512,7 @@ public class ListIncidents extends Activity {
             showIncidents(vectorCategories.get(position));
         }
 
-       
+
         public void onNothingSelected(AdapterView<?> parent) {
         }
     };

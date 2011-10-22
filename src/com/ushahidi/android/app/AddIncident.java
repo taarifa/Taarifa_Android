@@ -905,7 +905,7 @@ public class AddIncident extends UserLocationMap {
     
     //Get the unique identifier of the phone
     
-    public String identifer(){
+    public String identifier(){
 
     	TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
 
@@ -955,7 +955,7 @@ public class AddIncident extends UserLocationMap {
         mParams.put("person_last", UshahidiPref.lastname);
         mParams.put("person_email", UshahidiPref.email);
         mParams.put("filename", UshahidiPref.fileName);
-        mParams.put("identifier", identifer());
+        mParams.put("identifier", identifier());
 
         try {
             return UshahidiHttpClient.PostFileUpload(urlBuilder.toString(), mParams);

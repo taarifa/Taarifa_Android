@@ -30,6 +30,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.Vector;
 
 import android.app.AlertDialog;
@@ -51,6 +52,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -1062,6 +1064,24 @@ public class AddIncident extends UserLocationMap {
      */
     public void setVectorCategories(Vector<String> aVectorCategories) {
         mVectorCategories = aVectorCategories;
+    }
+    
+    //Get the unique identifier of the phone
+    
+    public String identifer(){
+
+    	TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
+
+    	String tmDevice, tmSerial, tmPhone, androidId;
+        tmDevice = "" + tm.getDeviceId();
+        tmSerial = "" + tm.getSimSerialNumber();
+        tmPhone = "" + tm.getSimOperator();
+        androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+        UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
+        String uniqueID = deviceUuid.toString();
+    	
+    	return uniqueID;
     }
 
     // thread class

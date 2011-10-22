@@ -54,6 +54,8 @@ public class UshahidiPref {
     public static String deploymentLatitude = "0.0";
 
     public static String deploymentLongitude = "0.0";
+    
+    public static String guid = "";
 
     private static SharedPreferences settings;
 
@@ -98,6 +100,7 @@ public class UshahidiPref {
         editor.putString("DeploymentLatitude", deploymentLatitude);
         editor.putString("DeploymentLongitude", deploymentLongitude);
         editor.putInt("AppRunsFirstTime", appRunsFirstTime);
+        editor.putString("GUID", guid);
         editor.commit();
     }
 }

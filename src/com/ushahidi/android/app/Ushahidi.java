@@ -161,6 +161,8 @@ public class Ushahidi extends DashboardActivity {
                 if (UshahidiPref.appRunsFirstTime == 0) {
                     refreshReports();
                     UshahidiPref.appRunsFirstTime = 1;
+                    //genereate guid here
+                    UshahidiPref.guid = "GUID is going to be put here";
                     UshahidiPref.saveSettings(this);
                 }
             }

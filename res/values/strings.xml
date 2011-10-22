@@ -119,8 +119,9 @@
 		the Internet</string>
 	<string name="preferences_notifications">Notifications</string>
 	<!-- Add Report Screen -->
-	<string name="report_successfully_added_online">Report successfully posted online and entered into
-		a moderation queue</string>
+	<!--  string name="report_successfully_added_online">Report successfully posted online and entered into
+		a moderation queue</string> -->
+	<string name="report_successfully_added_online">Test Toast</string>
 	<string name="report_successfully_added_offline">Report sent to local storage due to
 		unavailability
 		of Internet. Remember to sync to the online

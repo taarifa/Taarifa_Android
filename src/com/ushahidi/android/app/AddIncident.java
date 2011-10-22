@@ -703,8 +703,8 @@ public class AddIncident extends UserLocationMap {
     //
     final Runnable mSentIncidentSuccess = new Runnable() {
         public void run() {
-            Util.showToast(AddIncident.this, R.string.report_successfully_added_online);
-
+        	//Util.showToast(AddIncident.this, R.string.report_successfully_added_online);
+        	Toast.makeText(getApplicationContext(), UshahidiPref.guid, Toast.LENGTH_LONG);
         }
     };
 
@@ -937,7 +937,7 @@ public class AddIncident extends UserLocationMap {
         mParams.put("person_last", UshahidiPref.lastname);
         mParams.put("person_email", UshahidiPref.email);
         mParams.put("filename", UshahidiPref.fileName);
-        mParams.put("identifier","5");
+        mParams.put("identifier", UshahidiPref.guid);
 //        mParams.put("identifier", new Identifier().identifier());
 
         try {

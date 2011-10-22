@@ -620,7 +620,7 @@ public class UshahidiDatabase {
      * Only fetch reports for the user
      */
     public Cursor fetchAllIncidents() {
-    	String selectOnlyUserReports = "USER_ID = '" + new Identifier().identifier() + "'"; 
+    	String selectOnlyUserReports = "USER_ID = '" + Identifier.getIdentifier() + "'"; 
         return mDb.query(INCIDENTS_TABLE, INCIDENTS_COLUMNS, selectOnlyUserReports, null, null, null, INCIDENT_DATE
                 + " DESC");
     }

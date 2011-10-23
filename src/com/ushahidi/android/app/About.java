@@ -52,15 +52,15 @@ public class About extends DashboardActivity {
     
     private ImageButton searchButton;
 
-    private static final String MEDIA_URL = "http://www.ushahidi.com";
+    private static final String MEDIA_URL = "http://www.waterhackathon.org";
 
-    private static final String TEAM_URL = "http://ushahidi.com/about-us/team";
+    private static final String TEAM_URL = "http://www.rhok.org/event/waterhackathon-london";
 
-    private static final String TWITTER_URL = "http://twitter.com/ushahidi";
+    private static final String TWITTER_URL = "https://twitter.com/randomhacks";
 
-    private static final String FACEBOOK_URL = "http://www.facebook.com/ushahidi";
+    private static final String FACEBOOK_URL = "https://www.facebook.com/RandomHacks";
 
-    private static final String CONTACT_URL = "http://ushahidi.com/contact-us";
+    private static final String CONTACT_URL = "http://www.rhok.org/event/waterhackathon-london";
 
     private static final int HOME = Menu.FIRST + 1;
 
@@ -73,8 +73,6 @@ public class About extends DashboardActivity {
     private static final int DIALOG_ERROR = 0;
 
     private String versionName = "";
-
-    private Intent i;
 
     private String dialogErrorMsg = "An error occurred fetching the reports. "
             + "Make sure you have entered an Ushahidi instance.";
@@ -106,45 +104,35 @@ public class About extends DashboardActivity {
         }
         version.setText(versionName);
         // Dipo Fix
-        i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(MEDIA_URL));
-
+        
         mediaUrlBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Dip Fix
-                startActivity(i);
+                startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(MEDIA_URL)));
             }
         });
-
-        i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(TEAM_URL));
 
         teamUrlBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                startActivity(i);
+                startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(TEAM_URL)));
             }
         });
-
-        i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(TWITTER_URL));
 
         twitterUrlBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(i);
+                startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(TWITTER_URL)));
             }
         });
-
-        i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(FACEBOOK_URL));
 
         facebookUrlBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(i);
+                startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(FACEBOOK_URL)));
             }
         });
 
-        i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(CONTACT_URL));
-
         contactUrlBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(i);
+                startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(CONTACT_URL)));
             }
         });
     }

@@ -9,7 +9,7 @@
 	have questions regarding the use of this file, please contact Ushahidi developers 
 	at team@ushahidi.com. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.ushahidi.android.app" android:versionCode="10"
+	package="com.taarifa.android.app" android:versionCode="10"
 	android:versionName="v2.5">
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.VIBRATE" />
@@ -79,7 +79,7 @@
 		</activity>
 
 		<!-- Checkins Map -->
-		<activity android:name=".checkin.CheckinMap"
+		<activity android:name="com.taarifa.android.app.checkin.CheckinMap"
 			android:configChanges="screenLayout|orientation|keyboardHidden|touchscreen|navigation"
 			android:theme="@style/Theme.D1" android:label="@string/view_checkins">
 			<intent-filter>
@@ -88,7 +88,7 @@
 			</intent-filter>
 		</activity>
 
-		<!-- List Checkins -->
+    	<!-- List Checkins -->
 		<activity android:name=".checkin.ListCheckin"
 			android:configChanges="screenLayout|orientation|keyboardHidden|touchscreen|navigation"
 			android:theme="@style/Theme.D1" android:label="@string/view_checkins">
@@ -97,7 +97,7 @@
 				<category android:name="android.intent.category.DEFAULT"></category>
 			</intent-filter>
 		</activity>
-
+		    
 		<!-- View Incidents -->
 		<activity android:name=".ViewIncidents" android:theme="@style/Theme.D1"
 			android:label="@string/view_incident">
@@ -155,7 +155,7 @@
 		</activity>
 
 		<!-- View Checkins -->
-		<activity android:name=".checkin.ViewCheckins" android:theme="@style/Theme.D1"
+		<activity android:name="com.taarifa.android.app.checkin.ViewCheckins" android:theme="@style/Theme.D1"
 			android:label="@string/view_checkins">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
@@ -181,7 +181,7 @@
 				<category android:name="android.intent.category.DEFAULT"></category>
 			</intent-filter>
 		</activity>
-		<activity android:name=".checkin.CheckinActivity"
+		<activity android:name="com.taarifa.android.app.checkin.CheckinActivity"
 			android:theme="@style/Theme.D1"
 			android:configChanges="screenLayout|orientation|keyboardHidden|touchscreen|navigation"
 			android:label="@string/checkin_btn" />
@@ -212,8 +212,8 @@
 		</activity>
 
 		<!-- Provides search suggestions for deployments. -->
-		<provider android:name="com.ushahidi.android.app.data.DeploymentProvider"
-			android:authorities="com.ushahidi.android.app.data.deploymentprovider"
+		<provider android:name="com.taarifa.android.app.data.DeploymentProvider"
+			android:authorities="com.taarifa.android.app.data.deploymentprovider"
 			android:syncable="false" />
 	</application>
 </manifest>

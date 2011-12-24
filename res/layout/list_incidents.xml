@@ -18,7 +18,7 @@
         android:text="@string/empty_reports" android:textStyle="bold"
         android:textColor="@drawable/black_color" android:gravity="center_horizontal|center" />
 	<!-- List incidents -->
-	<com.ushahidi.android.app.ui.PullToRefreshListView
+	<com.taarifa.android.app.ui.PullToRefreshListView
 		android:id="@+id/view_incidents" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:paddingTop="11px"
 		android:paddingBottom="70px" android:paddingLeft="5px"

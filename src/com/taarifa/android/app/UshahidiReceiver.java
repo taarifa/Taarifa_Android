@@ -27,7 +27,7 @@ import android.content.Intent;
 public class UshahidiReceiver extends BroadcastReceiver {
 
     public static final String ACTION_REFRESH_REPORT_ALARM = 
-        "com.ushahidi.android.app.ushahidi.ACTION_UPDATE_USHAHIDI_ALARM";
+        "com.taarifa.android.app.ushahidi.ACTION_UPDATE_USHAHIDI_ALARM";
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -33,7 +33,7 @@ import com.taarifa.android.app.UshahidiApplication;
  */
 public class DeploymentProvider extends ContentProvider {
 
-    public static String AUTHORITY = "com.ushahidi.android.app.data.deploymentprovider";
+    public static String AUTHORITY = "com.taarifa.android.app.data.deploymentprovider";
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/deployment");
 

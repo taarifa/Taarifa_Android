@@ -17,7 +17,7 @@
     android:id="@+id/sur_camera"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" />
-  <com.ushahidi.android.app.ShutterButton
+  <com.taarifa.android.app.ShutterButton
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentRight="true"

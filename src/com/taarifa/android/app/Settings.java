@@ -110,7 +110,6 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        //The app crashes executing this line
         addPreferencesFromResource(R.xml.preferences);
 
         firstNamePref = new EditTextPreference(this);

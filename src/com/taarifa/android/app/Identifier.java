@@ -7,7 +7,11 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-
+/**
+ * Provides a unique identifier for the device the application is running on
+ * @author nicoweinert
+ *
+ */
 public class Identifier {
 	private static final String CLASS_TAG = Identifier.class.getCanonicalName();
 	

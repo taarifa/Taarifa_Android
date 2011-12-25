@@ -67,8 +67,8 @@ import android.widget.Toast;
 
 import com.google.android.maps.MapView;
 import com.taarifa.android.app.checkin.NetworkServices;
-import com.taarifa.android.app.data.UshahidiDatabase;
 import com.taarifa.android.app.data.AddIncidentData;
+import com.taarifa.android.app.data.UshahidiDatabase;
 import com.taarifa.android.app.net.UshahidiHttpClient;
 import com.taarifa.android.app.util.Util;
 
@@ -934,6 +934,7 @@ public class AddIncident extends UserLocationMap {
         mParams.put("person_last", UshahidiPref.lastname);
         mParams.put("person_email", UshahidiPref.email);
         mParams.put("filename", UshahidiPref.fileName);
+        mParams.put("device_id", Identifier.getDeviceIdentifier(getApplicationContext(), getContentResolver()));
 
         try {
             return UshahidiHttpClient.PostFileUpload(urlBuilder.toString(), mParams);

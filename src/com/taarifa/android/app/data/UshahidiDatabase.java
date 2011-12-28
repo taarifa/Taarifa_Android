@@ -82,6 +82,8 @@ public class UshahidiDatabase {
     public static final int ADD_PERSON_LAST_INDEX = 15;
 
     public static final int ADD_PERSON_EMAIL_INDEX = 16;
+    
+    public static final int ADD_DEVICE_ID_INDEX = 17;
 
     /**
      */
@@ -159,6 +161,8 @@ public class UshahidiDatabase {
     public static final String ADD_PERSON_LAST = "person_last";
 
     public static final String ADD_PERSON_EMAIL = "person_email";
+    
+    private static final String ADD_DEVICE_ID = "device_id";
 
     // Checkin messages
     public static final String CHECKIN_ID = "_id";
@@ -232,7 +236,7 @@ public class UshahidiDatabase {
             ADD_INCIDENT_HOUR, ADD_INCIDENT_MINUTE, ADD_INCIDENT_AMPM, ADD_INCIDENT_CATEGORIES,
             INCIDENT_LOC_NAME, INCIDENT_LOC_LATITUDE, INCIDENT_LOC_LONGITUDE, ADD_INCIDENT_PHOTO,
             ADD_INCIDENT_VIDEO, ADD_INCIDENT_NEWS, ADD_PERSON_FIRST, ADD_PERSON_LAST,
-            ADD_PERSON_EMAIL
+            ADD_PERSON_EMAIL, ADD_DEVICE_ID
     };
 
     // Checkins messages
@@ -298,11 +302,12 @@ public class UshahidiDatabase {
             + ADD_INCIDENT_TITLE + " TEXT NOT NULL, " + ADD_INCIDENT_DESC + " TEXT, "
             + INCIDENT_DATE + " DATE NOT NULL, " + ADD_INCIDENT_HOUR + " INTEGER, "
             + ADD_INCIDENT_MINUTE + " INTEGER, " + ADD_INCIDENT_AMPM + " TEXT NOT NULL, "
-            + ADD_INCIDENT_CATEGORIES + " TEXT NOT NULL, " + ADD_INCIDENT_LOC_NAME
-            + " TEXT NOT NULL, " + ADD_INCIDENT_LOC_LATITUDE + " TEXT NOT NULL, "
+            + ADD_INCIDENT_CATEGORIES + " TEXT NOT NULL, " 
+            + ADD_INCIDENT_LOC_NAME + " TEXT NOT NULL, " + ADD_INCIDENT_LOC_LATITUDE + " TEXT NOT NULL, "
             + ADD_INCIDENT_LOC_LONGITUDE + " TEXT NOT NULL, " + ADD_INCIDENT_PHOTO + " TEXT, "
-            + ADD_INCIDENT_VIDEO + " TEXT, " + ADD_INCIDENT_NEWS + " TEXT, " + ADD_PERSON_FIRST
-            + " TEXT, " + ADD_PERSON_LAST + " TEXT, " + ADD_PERSON_EMAIL + " TEXT " + ")";
+            + ADD_INCIDENT_VIDEO + " TEXT, " + ADD_INCIDENT_NEWS + " TEXT, "
+            + ADD_PERSON_FIRST + " TEXT, " + ADD_PERSON_LAST + " TEXT, "
+            + ADD_PERSON_EMAIL + " TEXT, " + ADD_DEVICE_ID + " TEXT" + ")";
 
     private static final String CATEGORIES_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS "
             + CATEGORIES_TABLE + " (" + CATEGORY_ID + " INTEGER PRIMARY KEY ON CONFLICT REPLACE, "
@@ -534,6 +539,7 @@ public class UshahidiDatabase {
         initialValues.put(ADD_PERSON_FIRST, addIncident.getPersonFirst());
         initialValues.put(ADD_PERSON_LAST, addIncident.getPersonLast());
         initialValues.put(ADD_PERSON_EMAIL, addIncident.getPersonEmail());
+        initialValues.put(ADD_DEVICE_ID, addIncident.getDeviceId());
 
         return mDb.insert(ADD_INCIDENTS_TABLE, null, initialValues);
     }

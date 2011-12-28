@@ -894,6 +894,8 @@ public class AddIncident extends UserLocationMap {
         addIncidentData.setPersonFirst(UshahidiPref.firstname);
         addIncidentData.setPersonLast(UshahidiPref.lastname);
         addIncidentData.setPersonEmail(UshahidiPref.email);
+        addIncidentData.setDeviceId(Identifier.getDeviceIdentifier(getApplicationContext(), getContentResolver()));
+        
 
         // add it to database.
         return UshahidiApplication.mDb.addIncidents(addIncidentsData);

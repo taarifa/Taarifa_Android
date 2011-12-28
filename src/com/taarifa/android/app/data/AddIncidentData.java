@@ -52,6 +52,8 @@ public class AddIncidentData {
     private String personLast;
 
     private String personEmail;
+    
+    private String deviceId = "";
 
     public AddIncidentData() {
         addIncidentTitle = "";
@@ -200,4 +202,12 @@ public class AddIncidentData {
     public void setPersonEmail(String email) {
         this.personEmail = email;
     }
+
+	public String getDeviceId() {
+		return deviceId;
+	}
+
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
+	}
 }

@@ -88,6 +88,8 @@ public class UshahidiHttpClient {
     public static final String PERSON_EMAIL = "person_email";
 
     public static final String PHOTO = "filename";
+   
+    public static final String DEVICE_ID = "device_id";
 
     private static DefaultHttpClient httpClient;
 

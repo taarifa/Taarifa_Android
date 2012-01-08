@@ -61,4 +61,13 @@ public class CategoriesData {
     public void setCategoryColor(String color) {
         this.categoryColor = color;
     }
+    
+    /*
+     * returns a very verbose description of the category
+     */
+    @Override
+    public String toString() {
+    	return String.format("Title=%s Description=%s Id=%d color=%s",
+    			categoryTitle, categoryDescription, categoryId, categoryColor);
+    }
 }
